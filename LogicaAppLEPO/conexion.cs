@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaAppLEPO
 {
-    public class conexion
+    public class Conexion
     {
         private string sentenciaSQL1;
         private string sentenciaSQL2;
@@ -21,13 +21,21 @@ namespace LogicaAppLEPO
             get { return mensaje; }
         }
 
-        public conexion()
+        public Conexion()
         {
-
+            //System.Data.OleDb.OleDbConnection conn;
             conn = new System.Data.OleDb.OleDbConnection();
             conn.ConnectionString = @"Provider=SQLNCLI11;Data Source=LAPTOP-44I47S4V;User ID=soporte;Password=soporte;Initial Catalog=Sobretension;Persist Security Info=False;";
 
         }
+
+        //public void Conexion2()
+        //{
+        //    //System.Data.OleDb.OleDbConnection conn;
+        //    conn = new System.Data.OleDb.OleDbConnection();
+        //    conn.ConnectionString = @"Provider=SQLNCLI11;Data Source=LAPTOP-44I47S4V;User ID=soporte;Password=soporte;Initial Catalog=Sobretension;Persist Security Info=False;";
+
+        //}
 
         public void SetSentencia1(string s1)
         {

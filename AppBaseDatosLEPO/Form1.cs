@@ -19,46 +19,35 @@ namespace AppBaseDatosLEPO
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
-            try {
-
-                LogicaAppLEPO.conexion objConexion;
-                objConexion = new LogicaAppLEPO.conexion();
-                string SenSQL1;
-                string SenSQL2;
-                LogicaAppLEPO.Descarga objDescarga;
-                objDescarga = new LogicaAppLEPO.Descarga();
-                objDescarga.FormaOnda = txtFO.Text;
-                objDescarga.Magnitud = txtM.Text;
-                objDescarga.ImpCanal = txtImpCan.Text;
-                objDescarga.PorcImp = txtPImp.Text;
-                objDescarga.ImpXl = txtImpLin.Text;
-                objDescarga.LongLinea = txtLonLin.Text;
-                objDescarga.LineaImpactada = txtLinImp.Text;
-                objDescarga.CodDescarga = txtCodDes.Text;
-
-                objDescarga.crearDescarga();
-                SenSQL1 = objDescarga.LeerCadenaComado();
-                objConexion.SetSentencia1(SenSQL1);
-
-
-                lblResultado.Text = " Se creo nuevo registro " + objConexion.EjecutarSQL1();
-
-                txtCodDes.Enabled = false;
-                btnGrabar.Enabled = false;
-
-            } 
-            catch (Exception es) {
             
-                lblResultado.Text = "Tenemos el siguiente problemita: "+es.Message;
-            }
+            
+
+                AppBaseDatosLEPO.Logica.Grabar grabar = new AppBaseDatosLEPO.Logica.Grabar();
+
+                grabar.FO = txtFO.Text;
+                grabar.Mag = txtM.Text;
+                grabar.ImpCan = txtImpCan.Text;
+                grabar.PImp = txtPImp.Text;
+                grabar.ImpLin = txtImpLin.Text;
+                grabar.LonLin = txtLonLin.Text;
+                grabar.LinImp = txtLinImp.Text;
+                grabar.CodDes = txtCodDes.Text;
+
+                grabar.grabar();
+                lblResultado.Text = grabar.Resultado;
+
+
+
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try {
 
-                LogicaAppLEPO.conexion objConexion;
-                objConexion = new LogicaAppLEPO.conexion();
+                LogicaAppLEPO.Conexion objConexion;
+                objConexion = new LogicaAppLEPO.Conexion();
                 string SenSQL1;
                 string SqnSQL2;
                 LogicaAppLEPO.Descarga objDescarga;
@@ -68,7 +57,7 @@ namespace AppBaseDatosLEPO
                 SenSQL1 = objDescarga.ConsultarDescarga();
                 objConexion.SetSentencia1(SenSQL1);
 
-                lblResultado.Text = "Se muestran resultados de la consulta para cédula "+ txtCodDes.Text;
+                lblResultado.Text = "Se muestran resultados de la consulta para Código de Descarga "+ txtCodDes.Text;
 
                 System.Data.DataSet miDS;
                 miDS = new System.Data.DataSet();
@@ -109,83 +98,42 @@ namespace AppBaseDatosLEPO
 
         private void btnLeer_Click(object sender, EventArgs e)
         {
-            try {
 
-                LogicaAppLEPO.conexion objConexion;
-                objConexion = new LogicaAppLEPO.conexion();
-                string SenSQL1;
-                string SenSQL2;
-                LogicaAppLEPO.Descarga objDescarga;
-                objDescarga = new LogicaAppLEPO.Descarga();
 
-                SenSQL1 = objDescarga.ConsultarTodosLasDescargas();
-                objConexion.SetSentencia1(SenSQL1);
-                lblResultado.Text = "Se muestran todos los clientes";
+            AppBaseDatosLEPO.Logica.Leer lecturaDescarga;
+            lecturaDescarga = new AppBaseDatosLEPO.Logica.Leer();
 
-                System.Data.DataSet miDS;
-                miDS = new System.Data.DataSet();
-                miDS = objConexion.Consultar();
-
-                int seleccionados;
-                seleccionados = miDS.Tables["Tabla"].Rows.Count;
-
-                if (seleccionados == 0)
-                {
-
-                    lbCodDes.Text = "No se encuentra Datos";
-                    lblForOn.Text = " ";
-                    lblImpCan.Text = " ";
-                    lblImpLin.Text = " ";
-                    lblLinImp.Text = " ";
-                    lblLonLin.Text = " ";
-                    lblMag.Text = " ";
-                    lblPorImp.Text = " ";
-                }
-                else
-                {
-
-                    dataGridView1.DataSource = miDS.Tables["Tabla"];
-                }
-            } 
-            
-            catch (Exception es) {
-
-                lblResultado.Text = "Tenemos un problemita "+es.Message;
-            }
+            lecturaDescarga.LecturaDatos();
+            dataGridView1.DataSource = lecturaDescarga.TablaDescarga;
+            lblResultado.Text = lecturaDescarga.Resultado;
 
         }
 
         private void btnBor_Click(object sender, EventArgs e)
         {
-            try
-            {
 
-                LogicaAppLEPO.conexion objConexion;
-                objConexion = new LogicaAppLEPO.conexion();
-                string SenSQL1;
-                string SenSQL2;
-                LogicaAppLEPO.Descarga objDescarga;
-                objDescarga = new LogicaAppLEPO.Descarga();
-                objDescarga.CodDescarga = dataGridView1.CurrentCell.Value.ToString(); // txtCodDes.Text; ;
+            //DateTime inicio = DateTime.Now;
 
-                SenSQL1 = objDescarga.BorrarDescarga();
+            //double tiempo = DateTime.Now.Subtract(inicio).Milliseconds;
 
-                objConexion.SetSentencia1(SenSQL1);
-                objConexion.EjecutarSQL1();
-                lblResultado.Text = "Se borró la descarga "+txtCodDes.Text+" "+objConexion.EjecutarSQL1();
-            } 
-            catch (Exception es) {
+            //Console.WriteLine(tiempo);
 
-                lblResultado.Text = "Tenemos un problemita "+es.Message;
-            }
+            AppBaseDatosLEPO.Logica.Eliminar eliminarDato;
+            eliminarDato = new AppBaseDatosLEPO.Logica.Eliminar();
+
+            eliminarDato.CodDes = dataGridView1.CurrentCell.Value.ToString(); 
+            eliminarDato.EliminarRegistro();
+            lblResultado.Text = eliminarDato.Resultado;
+
+
         }
 
         private void btnMod_Click(object sender, EventArgs e)
         {
             try {
 
-                LogicaAppLEPO.conexion objConexion;
-                objConexion = new LogicaAppLEPO.conexion();
+                LogicaAppLEPO.Conexion objConexion;
+                objConexion = new LogicaAppLEPO.Conexion();
                 string SenSQL1;
                 string SenSQL2;
                 LogicaAppLEPO.Descarga objDescarga;
@@ -205,16 +153,35 @@ namespace AppBaseDatosLEPO
                 objConexion.SetSentencia1(SenSQL1);
 
 
-                lblResultado.Text = " Se creo nuevo registro " + objConexion.EjecutarSQL1();
+                lblResultado.Text = " Se ha modificado el registro " + objConexion.EjecutarSQL1();
 
-                txtCodDes.Enabled = false;
-                btnGrabar.Enabled = false;
+                
             } 
             catch (Exception es) {
 
                 lblResultado.Text = "Tenemos el siguiente problemita: " + es.Message;
             }
 
+        }
+
+        private void lblImpCan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAsignar_Click(object sender, EventArgs e)
+        {
+            
+            AppBaseDatosLEPO.Form2 objForm2;
+            objForm2 = new AppBaseDatosLEPO.Form2();
+            string CodDescarga = txtCodDes.Text;
+            objForm2.Cod_Descarga = CodDescarga;
+            objForm2.Show();
+            objForm2.codDescarga();
+
+            //this.Close();
+
+            
         }
     }
 }

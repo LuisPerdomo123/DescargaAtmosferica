@@ -81,7 +81,7 @@ namespace LogicaAppLEPO
         {
 
             string insertarcadenaDescarga;
-            insertarcadenaDescarga = "INSERT INTO Descarga (IPicoRayo,FormaOnda,ImpedanciaCanal,ImpactoLinea,Impedancia,LongitudLinea,LineaImpactada,CodDescarga) VALUES ('" + this.magnitud + "','" + this.formaOnda + "','" + this.ImpCanal + "','" + this.porcImp + "','" + this.ImpXl + "','" + this.longLinea + "','" + this.lineaImpactada + "', '"+this.codDescarga+"')";
+            insertarcadenaDescarga = "INSERT INTO Descarga (IPicoRayo,FormaOnda,ImpedanciaCanal,ImpactoLinea,Impedancia,LongitudLinea,LineaImpactada,CodDescarga) VALUES ('" + this.magnitud + "','" + this.formaOnda + "','" + this.impCanal + "','" + this.porcImp + "','" + this.impXl + "','" + this.longLinea + "','" + this.lineaImpactada + "', '"+this.codDescarga+"')";
             cadenacomando = insertarcadenaDescarga;
         }
 
@@ -104,7 +104,9 @@ namespace LogicaAppLEPO
         public string ConsultarDescarga()
         {
 
+            Console.WriteLine("HolaDescarga/n");
             return @"SELECT * FROM Descarga WHERE (CodDescarga LIKE'" + this.codDescarga + "')";
+            Console.WriteLine("FinDescarga/n");
 
         }
         public string BorrarDescarga()

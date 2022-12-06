@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBaseDatosLEPO", "AppBase
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaAppLEPO", "LogicaAppLEPO\LogicaAppLEPO.csproj", "{FBE55D0A-333C-486A-8605-D3A269CA356F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PruebaCRUDLEPONUnitTest", "PruebaCRUDLEPO\PruebaCRUDLEPONUnitTest.csproj", "{F9E63D39-AAEB-448C-B7AF-5F221E056B5C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutTestLEPOMSTest", "AutTestLEPO\AutTestLEPOMSTest.csproj", "{FED2865E-B502-4BC6-9109-FA5E4950CEBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FBE55D0A-333C-486A-8605-D3A269CA356F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBE55D0A-333C-486A-8605-D3A269CA356F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBE55D0A-333C-486A-8605-D3A269CA356F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E63D39-AAEB-448C-B7AF-5F221E056B5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E63D39-AAEB-448C-B7AF-5F221E056B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E63D39-AAEB-448C-B7AF-5F221E056B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E63D39-AAEB-448C-B7AF-5F221E056B5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED2865E-B502-4BC6-9109-FA5E4950CEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED2865E-B502-4BC6-9109-FA5E4950CEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED2865E-B502-4BC6-9109-FA5E4950CEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED2865E-B502-4BC6-9109-FA5E4950CEBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
